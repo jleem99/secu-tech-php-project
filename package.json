@@ -1,0 +1,10 @@
+{
+  "name": "secu-tech-php-project",
+  "packageManager": "yarn@3.4.1",
+  "scripts": {
+    "build": "NODE_ENV=production tailwind build -i src/assets/css/tailwind.css -o public/css/tailwind.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.2"
+  }
+}
