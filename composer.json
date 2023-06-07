@@ -1,0 +1,6 @@
+{
+    "require": {
+        "monolog/monolog": "^3.3",
+        "php-di/php-di": "^7.0"
+    }
+}
