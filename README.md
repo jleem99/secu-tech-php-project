@@ -1,6 +1,18 @@
-# Project
+# 전자정보보안기술 23-1학기 과제
 
-> 전자정보보안기술 23-1 학기 과제
+> Table Of Contents
+
+[Installation Guide](#installation-guide)\
+[Project Structure](#project-structure)\
+&emsp;[Database Modeling](#database-modeling)\
+&emsp;[TODO](#todo)\
+&emsp;[Core Components](#core-components)\
+[Security Measures](#security-measures)\
+&emsp;[SQL Injection](#sql-injection)\
+&emsp;[Password Hashing \& Salting](#password-hashing--salting)\
+[Notable Things](#notable-things)
+
+<br>
 
 ## Github
 
@@ -8,9 +20,11 @@
 
 ## Demo Website
 
-- [project.jleem.com/secu-tech](project.jleem.com/secu-tech) (Hosted w/ AWS Elastic Beanstalk)
+- [project.jleem.com/secu-tech](https://project.jleem.com/secu-tech) (Hosted w/ AWS Elastic Beanstalk)
 
-## How to Install
+<br>
+
+## Installation Guide
 
 1. composer 패키지 매니저 설치
 2. 패키지 설치: `composer install`
@@ -22,6 +36,8 @@
    - `VirtualHost` directive 추가 (`VirtualHost *:{{PORT}}` → `/public` 디렉토리)
    - php 모듈 활성화 (또는 php-fpm)
    - apache 서버 재시작
+
+<br>
 
 ## Project Structure
 
@@ -36,6 +52,8 @@ Prisma의 모델링 스키마를 이용해 데이베이스 모델링 진행: `pr
 > 테이블 생성 쿼일
 
 - `prisma/migrations/20230609025245_init/migration.sql` 파일
+
+<br>
 
 ### TODO
 
@@ -60,6 +78,8 @@ Prisma의 모델링 스키마를 이용해 데이베이스 모델링 진행: `pr
 - [ ] Installation Guide 제작
 - [ ] 프로젝트 구조 도식 제작 (mermaid)
 
+<br>
+
 ### Core Components
 
 ```mermaid
@@ -79,6 +99,8 @@ classDiagram
 > RelationalDataSource
 >
 
+<br>
+
 ## Security Measures
 
 ### SQL Injection
@@ -95,6 +117,8 @@ $stmt->execute([$username, $hashedPassword]);
 
 → `$username`, `$hashedPassword`를 쿼리 문자열 내에 raw 형태로 삽입하는 것이 아닌, 파라미터`(?, ?)` 형태로 입력받아 sanitize될 수 있도록 별도 처리
 
+<br>
+
 ### Password Hashing & Salting
 
 패스워드 해싱, 솔팅 과정을 위하여 php 자체 `password_hash`, `password_verify` 함수를 사용 \
@@ -103,6 +127,8 @@ $stmt->execute([$username, $hashedPassword]);
 - `password_hash`: 솔트를 추가하여 패스워드를 해싱, 솔트와 해시 정보를 포함한 결과를 리턴
 - `password_verify`: 앞서 `password_hash` 과정의 출력물에서 솔트를 추출, 주어진 해시와 비교하여 암호가 유효한지 체크
 → `src/services/AuthService.php`에 구현
+
+<br>
 
 ## Notable Things
 
