@@ -1,6 +1,13 @@
 # Project
 
+> 전자정보보안기술 23-1 학기 과제
+
+## Github
+
+- [https://github.com/jleem99/secu-tech-php-project](https://github.com/jleem99/secu-tech-php-project)
+
 ## Demo Website
+
 - [project.jleem.com/secu-tech](project.jleem.com/secu-tech) (Hosted with AWS Elastic Beanstalk)
 
 ## How to Install
