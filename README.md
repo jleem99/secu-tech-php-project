@@ -20,23 +20,23 @@
 
 ### TODO
 
-[ ] Controller 구현
-[ ] Persistent Layer 추상화
-  [ ] QueryBuilder
-  [ ] DataSource
-  [ ] CRUDService
-[ ] 비즈니스 로직 구현
-[ ] 뷰 구현
-  [ ] login.php
-  [ ] logout.php
-  [ ] ...
-[ ] Security Measures: 강의 내용 적용 / 가이드라인 체크리스트
-[ ] 외부 로깅 연결 (monolog <-> Amazon CloudWatch)
-[ ] 데모 사이트 배포 (AWS)
-[ ] 프로젝트 Dockerize
-[ ] 서비스 분리
-[ ] Installation Guide 제작
-[ ] 프로젝트 구조 도식 제작 (mermaid)
+- [ ] Controller 구현
+- [ ] Persistent Layer 추상화
+  - [ ] QueryBuilder
+  - [ ] DataSource
+  - [ ] CRUDService
+- [ ] 비즈니스 로직 구현
+- [ ] 뷰 구현
+  - [ ] login.php
+  - [ ] logout.php
+  - [ ] ...
+- [ ] Security Measures: 강의 내용 적용 / 가이드라인 체크리스트
+- [ ] 외부 로깅 연결 (monolog <-> Amazon CloudWatch)
+- [ ] 데모 사이트 배포 (AWS)
+- [ ] 프로젝트 Dockerize
+- [ ] 서비스 분리
+- [ ] Installation Guide 제작
+- [ ] 프로젝트 구조 도식 제작 (mermaid)
 
 ### Core Components
 
