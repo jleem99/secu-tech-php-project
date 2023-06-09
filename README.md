@@ -8,19 +8,40 @@
 
 ## Demo Website
 
-- [project.jleem.com/secu-tech](project.jleem.com/secu-tech) (Hosted with AWS Elastic Beanstalk)
+- [project.jleem.com/secu-tech](project.jleem.com/secu-tech) (Hosted w/ AWS Elastic Beanstalk)
 
 ## How to Install
 
 1. composer 패키지 매니저 설치
-2. composer install
+2. 패키지 설치: `composer install`
 3. tailwindcss 빌드
+   - tailwind standalone cli 설치: <https://tailwindcss.com/blog/standalone-cli>
+   - tailwind 빌드: `tailwind build -i src/assets/css/tailwind.css -o public/css/tailwind.css`
+4. 아파치 서버 설정
+   - `rewrite` 모듈 활성화: `LoadModule rewrite_module lib/httpd/modules/mod_rewrite.so`
+   - `VirtualHost` directive 추가 (`VirtualHost *:{{PORT}}` → `/public` 디렉토리)
+   - php 모듈 활성화 (또는 php-fpm)
+   - apache 서버 재시작
 
 ## Project Structure
 
+### Database Modeling
+
+Prisma의 모델링 스키마를 이용해 데이베이스 모델링 진행: `prisma/schema.prisma`
+
+> ER Diagram
+
+![ER Diagram](prisma/erd.svg)
+
+> 테이블 생성 쿼일
+
+- `prisma/migrations/20230609025245_init/migration.sql` 파일
+
 ### TODO
 
-- [ ] Controller 구현
+- [ ] MVC 패턴 적용
+  - [ ] `.htaccess` 리다이렉트 설정
+  - [ ] Controller 구현
 - [ ] Persistent Layer 추상화
   - [ ] QueryBuilder
   - [ ] DataSource
@@ -31,10 +52,11 @@
   - [ ] logout.php
   - [ ] ...
 - [ ] Security Measures: 강의 내용 적용 / 가이드라인 체크리스트
-- [ ] 외부 로깅 연결 (monolog <-> Amazon CloudWatch)
-- [ ] 데모 사이트 배포 (AWS)
+- [ ] 외부 로깅 연결 (monolog ↔️ Amazon CloudWatch)
+- [ ] 데모 사이트 배포 (AWS Beanstalk)
 - [ ] 프로젝트 Dockerize
 - [ ] 서비스 분리
+- [ ] 세션 데이터베이스 분리 (Redis)
 - [ ] Installation Guide 제작
 - [ ] 프로젝트 구조 도식 제작 (mermaid)
 
@@ -53,7 +75,6 @@ classDiagram
 
 > QueryBuilder
 >
--
 
 > RelationalDataSource
 >
@@ -62,7 +83,7 @@ classDiagram
 
 ### SQL Injection
 
-PDO의 Prepared Stmt. 사용
+PDO의 Prepared Stmt. 사용 \
 (`mysqli`의 prepared statement도 있지만, `RelationalDataSource`의 DB 종속성을 피하기 위하여 `PDO`를 사용)
 
 e.g.
@@ -76,7 +97,7 @@ $stmt->execute([$username, $hashedPassword]);
 
 ### Password Hashing & Salting
 
-패스워드 해싱, 솔팅 과정을 위하여 php 자체 `password_hash`, `password_verify` 함수를 사용
+패스워드 해싱, 솔팅 과정을 위하여 php 자체 `password_hash`, `password_verify` 함수를 사용 \
 (php 구현체에 따라 `bcrypt` 또는 `Argon2`의 패스워드 해싱을 사용하는 것으로 알려짐)
 
 - `password_hash`: 솔트를 추가하여 패스워드를 해싱, 솔트와 해시 정보를 포함한 결과를 리턴

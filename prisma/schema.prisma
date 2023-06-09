@@ -1,0 +1,79 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator erd_markdown {
+  provider = "prisma-erd-generator"
+  output = "erd.md"
+}
+
+generator erd_svg {
+  provider = "prisma-erd-generator"
+  output = "erd.svg"
+}
+
+enum StudentType {
+  UNDERGRADUATE
+  GRADUATE
+}
+
+enum StudentStatus {
+  ENROLLED
+  ON_LEAVE
+  GRADUATED
+  DROPPED_OUT
+}
+
+model Student {
+  studentId    String   @id
+  name         String
+  ssn          String
+  phone        String
+  address      String
+  collegeCode  String
+  departmentCode String
+  studentType  StudentType
+  status       StudentStatus
+  statusChanges StudentStatusChange[]
+  promotions Promotion[]
+  graduationCandidate GraduationCandidate?
+  registrations Registration[]
+}
+
+model StudentStatusChange {
+  studentId   String   @id
+  status      StudentStatus
+  statusChangeCode String
+  startDate   DateTime
+  endDate     DateTime
+  Student     Student  @relation(fields: [studentId], references: [studentId])
+}
+
+model Promotion {
+  studentId  String @id
+  year       Int
+  semester   Int
+  grade      Int
+  Student    Student  @relation(fields: [studentId], references: [studentId])
+}
+
+model GraduationCandidate {
+  studentId       String  @id
+  graduationYear  Int
+  graduationSemester Int
+  graduationConfirmed Boolean
+  degreeNumber    String?
+  thesisTitle     String?
+  graduationFailReasonCode String?
+  Student         Student  @relation(fields: [studentId], references: [studentId])
+}
+
+model Registration {
+  studentId   String @id
+  registrationYear Int
+  registrationSemester Int
+  tuition     Int
+  paymentDate DateTime?
+  Student     Student  @relation(fields: [studentId], references: [studentId])
+}

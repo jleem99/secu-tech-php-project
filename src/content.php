@@ -13,7 +13,7 @@ $query = "SELECT * FROM info where id = '$cid'";
 $result = mysqli_query($connect, $query);
 $row = mysqli_fetch_array($result)
 
-  ?>
+?>
 
 <script>
   function deldata() {

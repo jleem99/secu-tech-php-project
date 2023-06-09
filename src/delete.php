@@ -16,5 +16,3 @@ echo "
     location.href='./main.php';
     </script>
     ";
-
-?>

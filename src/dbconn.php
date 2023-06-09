@@ -21,4 +21,3 @@ if ($connect->connect_error) {
   print('<br>');
   printf("server version: %s", mysqli_get_server_info($connect));
 }
-?>

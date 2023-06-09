@@ -5,6 +5,11 @@
     "build": "NODE_ENV=production tailwind build -i src/assets/css/tailwind.css -o public/css/tailwind.css"
   },
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^10.2.2",
+    "prisma-erd-generator": "^1.6.2",
     "tailwindcss": "^3.3.2"
+  },
+  "dependencies": {
+    "global": "^4.4.0"
   }
 }
